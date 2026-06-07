@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дарья Рябова — Регрессолог · Нумеролог «Код жизни»</title>
+<meta name="description" content="Помогаю найти причины повторяющихся сценариев через регрессию и метод «Код жизни». Онлайн. Без мистики.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & VARS ──────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F5F1EA;
+  --bg2:#EFEBE2;
+  --txt:#2E2E2E;
+  --olive:#7F8F74;
+  --olive-dark:#5C6B52;
+  --olive-bg:rgba(127,143,116,0.10);
+  --olive-bg2:rgba(127,143,116,0.18);
+  --terra:#B86A4B;
+  --accent:#D8C7B3;
+  --white:#FDFAF5;
+  --r:24px;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Manrope',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* ── TYPOGRAPHY ──────────────────── */
+.f-display{font-family:'Playfair Display',serif}
+.f-serif{font-family:'Cormorant Garamond',serif}
+h1,h2{font-family:'Playfair Display',serif;font-weight:500;line-height:1.18}
+h3{font-family:'Cormorant Garamond',serif;font-weight:600}
+
+/* ── UTILITIES ──────────────────── */
+.label{
+  display:block;
+  font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--olive);margin-bottom:14px;
+}
+.section-pad{padding:clamp(80px,10vw,130px) clamp(20px,5vw,80px)}
+.inner{max-width:1200px;margin:0 auto}
+.inner-md{max-width:900px;margin:0 auto}
+.inner-sm{max-width:700px;margin:0 auto}
+
+/* ── REVEAL ANIMATION ──────────────────── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.rv.vis{opacity:1;transform:none}
+.rv2{opacity:0;transform:translateY(28px);transition:opacity .75s .12s ease,transform .75s .12s ease}
+.rv2.vis{opacity:1;transform:none}
+.rv3{opacity:0;transform:translateY(28px);transition:opacity .75s .24s ease,transform .75s .24s ease}
+.rv3.vis{opacity:1;transform:none}
+
+/* ── NAV ──────────────────── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:64px;
+  background:rgba(245,241,234,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(216,199,179,.4);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,5vw,80px);
+  transition:box-shadow .3s;
+}
+#nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.07)}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:600;
+  color:var(--txt);letter-spacing:.02em;
+}
+.nav-logo em{font-style:normal;color:var(--terra)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{
+  font-size:.78rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--txt);opacity:.6;transition:opacity .2s,color .2s;
+}
+.nav-links a:hover{opacity:1;color:var(--olive)}
+.nav-btn{
+  background:var(--terra);color:#fff;
+  border:none;border-radius:50px;
+  padding:10px 22px;
+  font-family:'Manrope',sans-serif;
+  font-size:.78rem;font-weight:600;letter-spacing:.04em;
+  cursor:pointer;transition:background .2s,transform .15s;
+  white-space:nowrap;
+}
+.nav-btn:hover{background:#9e5b3e;transform:translateY(-1px)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.burger span{width:22px;height:2px;background:var(--txt);border-radius:2px;transition:all .3s}
+
+/* ── HERO ──────────────────── */
+#hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding-top:64px;
+}
+.hero-l{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(60px,8vw,100px) clamp(20px,4vw,60px) clamp(60px,8vw,100px) clamp(24px,7vw,100px);
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--olive-bg2);border-radius:50px;
+  padding:7px 18px;margin-bottom:30px;width:fit-content;
+  font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--olive-dark);
+}
+.hero-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--olive);flex-shrink:0}
+#hero h1{
+  font-size:clamp(2rem,3.2vw,3.2rem);
+  font-weight:600;color:var(--txt);
+  margin-bottom:22px;
+}
+#hero h1 em{font-style:italic;color:var(--terra)}
+.hero-sub{
+  font-size:clamp(.95rem,1.1vw,1.05rem);
+  color:var(--txt);opacity:.72;
+  max-width:430px;line-height:1.75;margin-bottom:40px;
+}
+.btn-terra{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--terra);color:#fff;
+  border-radius:50px;padding:17px 34px;
+  font-size:.95rem;font-weight:600;letter-spacing:.02em;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  box-shadow:0 8px 28px rgba(184,106,75,.28);
+  width:fit-content;
+}
+.btn-terra:hover{background:#9e5b3e;transform:translateY(-2px);box-shadow:0 12px 36px rgba(184,106,75,.38)}
+.btn-terra svg{flex-shrink:0}
+.hero-checks{display:flex;flex-wrap:wrap;gap:10px 24px;list-style:none;margin-top:20px}
+.hero-checks li{
+  font-size:.83rem;font-weight:500;
+  color:var(--txt);opacity:.68;
+  display:flex;align-items:center;gap:7px;
+}
+.hero-checks li::before{content:'✓';color:var(--olive);font-weight:700}
+.hero-r{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#E5DDD3 0%,#CEC3B4 100%);
+}
+.hero-r img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:50% 15%;
+}
+.hero-r::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,var(--bg) 0%,transparent 18%);
+  pointer-events:none;
+}
+
+/* ── PAIN ──────────────────── */
+#pain{background:var(--olive-bg)}
+#pain h2{
+  font-size:clamp(1.7rem,2.8vw,2.6rem);
+  margin-bottom:10px;
+}
+.pain-sub{font-size:.95rem;color:var(--txt);opacity:.58;font-style:italic;margin-bottom:52px}
+.pain-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:16px;
+}
+.pain-card{
+  background:var(--white);
+  border-radius:var(--r);padding:26px 22px;
+  border:1px solid rgba(127,143,116,.2);
+  transition:transform .3s,box-shadow .3s;
+}
+.pain-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.07)}
+.pain-icon{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--olive-bg2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--olive);font-weight:700;font-size:.8rem;
+  margin-bottom:13px;
+}
+.pain-card p{font-size:.9rem;line-height:1.6;opacity:.82}
+
+/* ── ABOUT ──────────────────── */
+#about{background:var(--bg)}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(36px,6vw,90px);align-items:center;
+}
+.about-photo{
+  position:relative;border-radius:var(--r);overflow:hidden;
+  aspect-ratio:4/5;
+}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:top}
+.about-badge{
+  position:absolute;bottom:22px;left:22px;right:22px;
+  background:rgba(245,241,234,.94);
+  backdrop-filter:blur(8px);
+  border-radius:16px;padding:16px 20px;
+  border:1px solid rgba(216,199,179,.5);
+}
+.about-badge strong{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:600;
+  display:block;margin-bottom:3px;
+}
+.about-badge span{font-size:.76rem;color:var(--txt);opacity:.58}
+.about-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,1.5vw,1.55rem);
+  font-style:italic;line-height:1.45;
+  color:var(--terra);
+  border-left:3px solid var(--terra);
+  padding-left:22px;
+  margin-bottom:26px;
+}
+.about-txt{font-size:.92rem;line-height:1.85;opacity:.78;margin-bottom:14px}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.tag{
+  background:var(--olive-bg2);border-radius:50px;
+  padding:7px 16px;
+  font-size:.78rem;font-weight:600;color:var(--olive-dark);
+  letter-spacing:.02em;
+}
+
+/* ── EDUCATION ──────────────────── */
+#edu{background:var(--olive-bg)}
+#edu h2{font-size:clamp(1.7rem,2.8vw,2.6rem);margin-bottom:40px}
+.edu-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:16px;margin-bottom:48px;
+}
+.edu-card{
+  background:var(--white);
+  border-radius:var(--r);padding:26px 24px;
+  border:1px solid rgba(127,143,116,.2);
+  transition:transform .3s;
+}
+.edu-card:hover{transform:translateY(-3px)}
+.edu-year{
+  font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--terra);margin-bottom:10px;display:block;
+}
+.edu-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:600;line-height:1.4;
+  margin-bottom:8px;
+}
+.edu-org{font-size:.8rem;opacity:.56;line-height:1.5}
+
+.diplomas{
+  display:flex;gap:14px;overflow-x:auto;
+  padding-bottom:8px;scroll-snap-type:x mandatory;
+}
+.diplomas::-webkit-scrollbar{height:3px}
+.diplomas::-webkit-scrollbar-track{background:var(--accent);border-radius:4px}
+.diplomas::-webkit-scrollbar-thumb{background:var(--olive);border-radius:4px}
+.dip{
+  flex:0 0 220px;scroll-snap-align:start;
+  border-radius:16px;overflow:hidden;cursor:pointer;
+  box-shadow:0 4px 18px rgba(0,0,0,.1);
+  transition:transform .3s;
+}
+.dip:hover{transform:scale(1.04)}
+.dip img{width:100%;height:155px;object-fit:cover}
+
+/* ── SERVICES ──────────────────── */
+#services{background:var(--bg)}
+.services-hd{margin-bottom:48px}
+.services-hd h2{font-size:clamp(1.7rem,2.8vw,2.6rem);margin-bottom:10px}
+.services-hd p{opacity:.6;max-width:460px}
+.srv-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(272px,1fr));
+  gap:18px;
+}
+.srv{
+  background:var(--white);
+  border-radius:var(--r);padding:28px;
+  border:1px solid rgba(216,199,179,.5);
+  display:flex;flex-direction:column;
+  transition:transform .3s,box-shadow .3s;
+}
+.srv:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(0,0,0,.08)}
+.srv.feat{background:var(--olive);border-color:var(--olive)}
+.srv-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.9rem;font-weight:600;
+  color:var(--terra);margin-bottom:4px;
+}
+.srv.feat .srv-price{color:rgba(255,255,255,.85)}
+.srv-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:600;line-height:1.3;
+  margin-bottom:5px;
+}
+.srv.feat .srv-name{color:#fff}
+.srv-tagline{font-size:.82rem;font-style:italic;opacity:.58;margin-bottom:13px}
+.srv.feat .srv-tagline{color:rgba(255,255,255,.75);opacity:1}
+.srv-desc{font-size:.86rem;line-height:1.72;opacity:.72;flex:1;margin-bottom:18px}
+.srv.feat .srv-desc{color:rgba(255,255,255,.88);opacity:1}
+.srv-list{list-style:none;margin-bottom:18px}
+.srv-list li{
+  font-size:.82rem;opacity:.72;padding:3px 0;
+  display:flex;gap:8px;align-items:flex-start;line-height:1.5;
+}
+.srv.feat .srv-list li{color:rgba(255,255,255,.85);opacity:1}
+.srv-list li::before{content:'—';color:var(--olive);flex-shrink:0}
+.srv.feat .srv-list li::before{color:rgba(255,255,255,.5)}
+.srv-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:13px 22px;border-radius:50px;
+  font-family:'Manrope',sans-serif;font-size:.83rem;font-weight:600;
+  transition:all .2s;margin-top:auto;
+}
+.btn-outline{border:1.5px solid var(--terra);color:var(--terra);background:transparent}
+.btn-outline:hover{background:var(--terra);color:#fff}
+.btn-wh{background:#fff;color:var(--olive-dark);border:none}
+.btn-wh:hover{background:var(--accent)}
+.srv-note{font-size:.76rem;opacity:.48;margin-bottom:14px}
+.srv.feat .srv-note{color:rgba(255,255,255,.6);opacity:1}
+
+.srv-footer{
+  margin-top:44px;padding:28px 32px;
+  background:var(--olive-bg2);border-radius:var(--r);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:18px;
+  border:1px solid rgba(127,143,116,.22);
+}
+.srv-footer p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-style:italic;
+  max-width:480px;
+}
+
+/* ── CASE ──────────────────── */
+#case{background:var(--olive-bg)}
+.case-hd{margin-bottom:48px}
+.case-hd h2{font-size:clamp(1.7rem,2.8vw,2.6rem)}
+.case-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:18px;margin-bottom:36px;
+}
+.cs{
+  background:var(--white);border-radius:var(--r);padding:28px;
+  border:1px solid rgba(127,143,116,.2);
+}
+.cs-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.8rem;font-weight:700;
+  color:var(--accent);line-height:1;margin-bottom:14px;
+}
+.cs-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:600;
+  color:var(--terra);margin-bottom:10px;
+}
+.cs p{font-size:.88rem;line-height:1.72;opacity:.78}
+.case-results{
+  background:var(--white);border-radius:var(--r);padding:36px;
+  border:1px solid rgba(127,143,116,.2);
+  margin-bottom:28px;
+}
+.case-results h3{
+  font-size:1.4rem;color:var(--txt);margin-bottom:22px;
+}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.res-item{
+  display:flex;gap:10px;align-items:flex-start;
+  font-size:.88rem;line-height:1.55;opacity:.8;padding:6px 0;
+}
+.res-item::before{content:'✓';color:var(--olive);font-weight:700;flex-shrink:0}
+.case-quote{
+  background:var(--white);border-radius:var(--r);padding:36px;
+  border-left:4px solid var(--olive);
+}
+.case-quote blockquote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-style:italic;line-height:1.65;
+  margin-bottom:14px;
+}
+.case-quote cite{font-size:.78rem;opacity:.5;font-style:normal;letter-spacing:.04em}
+
+/* case screenshots */
+.case-screenshots{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;margin-top:28px;
+}
+.ss{
+  border-radius:16px;overflow:hidden;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,.09);
+  transition:transform .3s;
+}
+.ss:hover{transform:scale(1.03)}
+.ss img{width:100%;display:block}
+
+/* ── REVIEWS ──────────────────── */
+#reviews{background:var(--bg)}
+.reviews-hd{text-align:center;margin-bottom:52px}
+.reviews-hd h2{font-size:clamp(1.7rem,2.8vw,2.6rem);margin-bottom:10px}
+.reviews-hd p{font-style:italic;opacity:.58;font-size:.93rem}
+.rev-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:18px;margin-bottom:48px;
+}
+.rev{
+  background:var(--white);border-radius:var(--r);padding:26px;
+  border:1px solid rgba(216,199,179,.5);
+  transition:transform .3s,box-shadow .3s;
+}
+.rev:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.07)}
+.rev-type{
+  display:inline-block;
+  font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 12px;border-radius:50px;margin-bottom:13px;
+}
+.rt-reg{background:rgba(184,106,75,.12);color:var(--terra)}
+.rt-num{background:var(--olive-bg2);color:var(--olive-dark)}
+.rev-key{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:600;line-height:1.35;
+  margin-bottom:11px;
+}
+.rev-txt{font-size:.84rem;line-height:1.75;font-style:italic;opacity:.7;margin-bottom:14px}
+.rev-name{font-size:.78rem;font-weight:600;opacity:.45;letter-spacing:.04em}
+
+/* screenshots gallery */
+.ss-label{
+  text-align:center;margin-bottom:24px;
+  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;opacity:.38;
+}
+.ss-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
+}
+.ss-grid .ss img{height:auto;max-height:340px;object-fit:cover}
+.rev-more{text-align:center;margin-top:40px}
+.rev-more p{font-style:italic;opacity:.6;font-size:.92rem;margin-bottom:18px}
+
+/* ── FAQ ──────────────────── */
+#faq{background:var(--olive-bg)}
+.faq-hd{margin-bottom:48px}
+.faq-hd h2{font-size:clamp(1.7rem,2.8vw,2.6rem)}
+.faq-item{border-bottom:1px solid rgba(127,143,116,.3)}
+.faq-q{
+  width:100%;background:none;border:none;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:22px 0;cursor:pointer;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:600;color:var(--txt);
+  text-align:left;line-height:1.4;
+  transition:color .2s;
+}
+.faq-q:hover{color:var(--olive-dark)}
+.faq-ico{
+  width:28px;height:28px;flex-shrink:0;border-radius:50%;
+  background:var(--olive-bg2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;font-weight:300;color:var(--olive-dark);
+  transition:transform .3s,background .3s;
+  line-height:1;
+}
+.faq-item.open .faq-ico{transform:rotate(45deg);background:var(--olive);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-item.open .faq-a{max-height:320px;padding-bottom:22px}
+.faq-a p{font-size:.9rem;line-height:1.8;opacity:.72}
+
+/* ── FINAL ──────────────────── */
+#final{
+  position:relative;min-height:72vh;
+  display:flex;align-items:center;overflow:hidden;
+}
+.final-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(140deg,#3A4A35 0%,#4D5E47 50%,#3E4E39 100%);
+}
+.final-photo{
+  position:absolute;right:0;top:0;bottom:0;
+  width:48%;object-fit:cover;object-position:top;
+  opacity:.35;
+}
+.final-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(58,74,53,1) 42%,rgba(58,74,53,0) 75%);
+}
+.final-content{
+  position:relative;z-index:2;
+  padding:clamp(80px,10vw,110px) clamp(24px,7vw,100px);
+  color:#fff;max-width:650px;
+}
+.final-content .label{color:rgba(255,255,255,.5)}
+.final-content h2{
+  font-size:clamp(1.9rem,3.5vw,3rem);color:#fff;
+  line-height:1.2;margin-bottom:18px;
+}
+.final-content h2 em{color:var(--accent);font-style:italic}
+.final-content p{font-size:.98rem;color:rgba(255,255,255,.68);margin-bottom:40px;max-width:460px;line-height:1.75}
+.final-btns{display:flex;flex-wrap:wrap;gap:14px}
+.btn-wh-solid{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;color:var(--olive-dark);
+  padding:16px 34px;border-radius:50px;
+  font-size:.93rem;font-weight:600;
+  transition:all .2s;
+}
+.btn-wh-solid:hover{background:var(--accent);transform:translateY(-2px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:#fff;
+  padding:16px 34px;border-radius:50px;
+  border:1.5px solid rgba(255,255,255,.38);
+  font-size:.93rem;font-weight:600;
+  transition:all .2s;
+}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+/* ── FOOTER ──────────────────── */
+footer{
+  background:#2C3828;
+  padding:48px clamp(20px,5vw,80px) 36px;
+}
+.foot-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;
+  gap:36px;align-items:start;
+}
+.foot-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:600;
+  color:rgba(255,255,255,.88);display:block;margin-bottom:5px;
+}
+.foot-role{font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:18px}
+.foot-links{display:flex;flex-direction:column;gap:7px}
+.foot-links a{
+  font-size:.83rem;color:rgba(255,255,255,.5);
+  transition:color .2s;
+}
+.foot-links a:hover{color:var(--terra)}
+.foot-legal{font-size:.76rem;color:rgba(255,255,255,.28);line-height:1.85;text-align:right}
+.foot-legal a{color:rgba(255,255,255,.28);text-decoration:underline}
+hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200px;margin:26px auto 18px}
+.foot-copy{max-width:1200px;margin:0 auto;font-size:.75rem;color:rgba(255,255,255,.2);text-align:center}
+
+/* ── LIGHTBOX ──────────────────── */
+#lb{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,.88);
+  align-items:center;justify-content:center;
+}
+#lb.on{display:flex}
+#lb img{max-width:92vw;max-height:92vh;border-radius:12px;object-fit:contain}
+#lb-close{
+  position:absolute;top:20px;right:28px;
+  color:#fff;font-size:2.2rem;cursor:pointer;
+  background:none;border:none;line-height:1;
+}
+
+/* ── RESPONSIVE ──────────────────── */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr}
+  .hero-r{height:55vw;order:-1}
+  .hero-r::after{background:linear-gradient(to bottom,transparent 65%,var(--bg) 100%)}
+  .about-grid{grid-template-columns:1fr}
+  .case-steps{grid-template-columns:1fr}
+  .res-grid{grid-template-columns:1fr}
+  .foot-inner{grid-template-columns:1fr}
+  .foot-legal{text-align:left}
+  .nav-links{display:none}
+  .nav-links.open{
+    display:flex;flex-direction:column;
+    position:fixed;top:64px;left:0;right:0;
+    background:var(--bg);padding:18px 24px;gap:16px;
+    border-bottom:1px solid var(--accent);
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+  }
+  .burger{display:flex}
+  .nav-btn{display:none}
+  .case-screenshots{grid-template-columns:1fr 1fr}
+  .final-photo{display:none}
+  .final-overlay{display:none}
+}
+@media(max-width:600px){
+  .rev-grid{grid-template-columns:1fr}
+  .ss-grid{grid-template-columns:1fr 1fr}
+  .case-screenshots{grid-template-columns:1fr}
+  .final-btns{flex-direction:column}
+  .final-btns a{text-align:center;justify-content:center}
+  .pain-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Дарья <em>Рябова</em></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">Обо мне</a></li>
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#case">Кейсы</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="#faq">Вопросы</a></li>
+  </ul>
+  <a href="https://t.me/darya_bova" target="_blank" class="nav-btn">Написать в Telegram</a>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- 1. HERO -->
+<section id="hero">
+  <div class="hero-l">
+    <div class="hero-pill rv">Онлайн · Без мистики · С результатом</div>
+    <h1 class="rv2">Когда одна и та же ситуация повторяется <em>снова и снова</em> — проблема часто глубже, чем кажется</h1>
+    <p class="hero-sub rv3">Помогаю находить причины повторяющихся сценариев и найти выход из внутреннего тупика через регрессию и метод «Код жизни».</p>
+    <a href="https://t.me/darya_bova" target="_blank" class="btn-terra rv">
+      Записаться на консультацию
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <ul class="hero-checks rv2">
+      <li>Онлайн</li>
+      <li>Без эзотерического пафоса</li>
+      <li>Индивидуальный подход</li>
+    </ul>
+  </div>
+  <div class="hero-r">
+    <img src="https://i.ibb.co/PZDwCtRC/photo-2026-06-06-14-32-44.jpg" alt="Дарья Рябова">
+  </div>
+</section>
+
+<!-- 2. PAIN -->
+<section id="pain" class="section-pad">
+  <div class="inner">
+    <span class="label rv">Узнаёшь себя?</span>
+    <h2 class="rv2">Возможно, сейчас ты…</h2>
+    <p class="pain-sub rv3">Если хотя бы два пункта — про тебя, мы можем разобраться с этим вместе.</p>
+    <div class="pain-grid">
+      <div class="pain-card rv">
+        <div class="pain-icon">✓</div>
+        <p>Снова оказываешься не в тех отношениях — и не понимаешь почему</p>
+      </div>
+      <div class="pain-card rv2">
+        <div class="pain-icon">✓</div>
+        <p>Откладываешь важные решения, хотя давно пора сделать шаг</p>
+      </div>
+      <div class="pain-card rv3">
+        <div class="pain-icon">✓</div>
+        <p>Чувствуешь тревогу без видимой причины — просто фоном</p>
+      </div>
+      <div class="pain-card rv">
+        <div class="pain-icon">✓</div>
+        <p>Много думаешь, анализируешь — но понимания больше не становится</p>
+      </div>
+      <div class="pain-card rv2">
+        <div class="pain-icon">✓</div>
+        <p>Ходишь по кругу в одних и тех же сценариях — в работе, деньгах, отношениях</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ABOUT -->
+<section id="about" class="section-pad">
+  <div class="inner about-grid">
+    <div class="about-photo rv">
+      <img src="https://i.ibb.co/x8rNFWnv/photo-2026-06-06-14-32-58.jpg" alt="Дарья Рябова — регрессолог и нумеролог">
+      <div class="about-badge">
+        <strong>Дарья Рябова</strong>
+        <span>Регрессолог · Нумеролог «Код жизни»</span>
+      </div>
+    </div>
+    <div class="rv2">
+      <span class="label">Почему я занимаюсь этим</span>
+      <p class="about-quote">Я тревожилась за всё на свете. Угождала всем вокруг. Только не себе. Пока тело не сказало: стоп.</p>
+      <p class="about-txt">Я была очень тревожной. Боялась за детей, мужа, деньги, зависела от чужого мнения. Снаружи держалась, внутри жила в постоянном напряжении. Я спасала, угождала, тянула всех — кроме себя. И однажды тело не выдержало. Сильная аллергия, апатия, гормональный сбой. На восстановление ушли годы.</p>
+      <p class="about-txt">Самые глубокие ответы я нашла в нумерологии и регрессивных практиках. Они показали, где я снова и снова предавала себя, пытаясь заслужить любовь, одобрение и чувство безопасности. Когда я перестала жить чужими ожиданиями — начала меняться и жизнь.</p>
+      <p class="about-txt">Сегодня я помогаю людям увидеть то, что мешает им двигаться вперёд. Все инструменты я сначала проживаю на себе. А 10 лет работы с детьми научили меня видеть глубже слов. <span style="color:var(--terra);font-style:italic">Я всё ещё не идеальна. Но я живая, настоящая и наконец своя.</span></p>
+      <div class="about-tags">
+        <span class="tag">Регрессолог</span>
+        <span class="tag">Нумеролог «Код жизни»</span>
+        <span class="tag">Без запугивания и мистики</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. EDUCATION -->
+<section id="edu" class="section-pad">
+  <div class="inner">
+    <span class="label rv">Образование и квалификация</span>
+    <h2 class="rv2">Дипломы и сертификаты</h2>
+    <div class="edu-cards" style="margin-top:36px">
+      <div class="edu-card rv">
+        <span class="edu-year">2025</span>
+        <div class="edu-title">Повышение квалификации «Код жизни: регрессивная нумерология и терапия»</div>
+        <div class="edu-org">42 акад. часа · Академия ДПО</div>
+      </div>
+      <div class="edu-card rv2">
+        <span class="edu-year">2024</span>
+        <div class="edu-title">Регрессивная нумерология и терапия</div>
+        <div class="edu-org">Академия «Код Жизни» · наставник Бугаева А.В.</div>
+      </div>
+      <div class="edu-card rv3">
+        <span class="edu-year">2024</span>
+        <div class="edu-title">Регрессивная терапия</div>
+        <div class="edu-org">Академия «Код Жизни» · наставник Бугаева А.В.</div>
+      </div>
+      <div class="edu-card rv">
+        <span class="edu-year">2024</span>
+        <div class="edu-title">Диплом «Психолог-консультант»</div>
+        <div class="edu-org">АНО ДПО «ЦПК Партнёр» · 250 часов</div>
+      </div>
+    </div>
+    <div class="diplomas rv">
+      <div class="dip" onclick="openLb('https://i.ibb.co/9m5SxmP0/img20260530-21521093.jpg')">
+        <img src="https://i.ibb.co/9m5SxmP0/img20260530-21521093.jpg" alt="Удостоверение о повышении квалификации 2025">
+      </div>
+      <div class="dip" onclick="openLb('https://i.ibb.co/S451hDbT/photo-2026-05-30-19-54-18.jpg')">
+        <img src="https://i.ibb.co/S451hDbT/photo-2026-05-30-19-54-18.jpg" alt="Сертификат — Регрессивная нумерология">
+      </div>
+      <div class="dip" onclick="openLb('https://i.ibb.co/p6xB7XLv/photo-2026-05-30-19-54-12.jpg')">
+        <img src="https://i.ibb.co/p6xB7XLv/photo-2026-05-30-19-54-12.jpg" alt="Сертификат — Регрессивная терапия">
+      </div>
+      <div class="dip" onclick="openLb('https://i.ibb.co/Ng66snb2/img20260530-21371986.jpg')">
+        <img src="https://i.ibb.co/Ng66snb2/img20260530-21371986.jpg" alt="Диплом психолог-консультант">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. SERVICES -->
+<section id="services" class="section-pad">
+  <div class="inner">
+    <div class="services-hd rv">
+      <span class="label">Методы работы и услуги</span>
+      <h2>Как я могу помочь</h2>
+      <p>Выбери то, что откликается — или напиши мне, и я подскажу с чего начать</p>
+    </div>
+    <div class="srv-grid">
+
+      <div class="srv feat rv">
+        <div class="srv-price">4 000 ₽</div>
+        <div class="srv-name">Сессия регрессивной терапии</div>
+        <div class="srv-tagline">Когда голова всё понимает — а внутри ничего не меняется</div>
+        <div class="srv-desc">Регресс — это мягкая работа с образами, в которой психика сама показывает то, что держит тебя в петле. Я рядом — веду, держу пространство, помогаю выйти с ясностью, а не с тревогой.</div>
+        <ul class="srv-list">
+          <li>Понимание откуда тянется тема</li>
+          <li>Облегчение в теле</li>
+          <li>Конкретный следующий шаг</li>
+        </ul>
+        <div class="srv-note">Онлайн, видеозвонок · 90–120 минут</div>
+        <a href="https://t.me/darya_bova" target="_blank" class="srv-btn btn-wh">Записаться на регресс</a>
+      </div>
+
+      <div class="srv rv2">
+        <div class="srv-price">3 500 ₽</div>
+        <div class="srv-name">Разбор даты рождения</div>
+        <div class="srv-tagline">Твоя личная карта — не гороскоп</div>
+        <div class="srv-desc">Твоя дата рождения — точная карта: сильные стороны, скрытые таланты, повторяющиеся сценарии и ресурсы, о которых ты, возможно, не догадываешься.</div>
+        <ul class="srv-list">
+          <li>Сильные и слабые стороны личности</li>
+          <li>Предназначение и жизненные сценарии</li>
+          <li>Страхи, испытания, кармические задачи</li>
+          <li>Конкретные рекомендации</li>
+        </ul>
+        <div class="srv-note">Формат: PDF-документ</div>
+        <a href="https://t.me/darya_bova" target="_blank" class="srv-btn btn-outline">Хочу разобрать свою дату</a>
+      </div>
+
+      <div class="srv rv3">
+        <div class="srv-price">3 500 ₽</div>
+        <div class="srv-name">Прогностика солярного года</div>
+        <div class="srv-tagline">Твой личный план на ближайшие 12 месяцев</div>
+        <div class="srv-desc">Когда знаешь карту своего года заранее, перестаёшь тратить силы против течения и начинаешь двигаться в потоке.</div>
+        <ul class="srv-list">
+          <li>Разбор 5 ключевых энергий года</li>
+          <li>Сферы: рост, отношения, деньги</li>
+          <li>Чёткие рекомендации на весь год</li>
+        </ul>
+        <div class="srv-note">Формат: PDF-документ</div>
+        <a href="https://t.me/darya_bova" target="_blank" class="srv-btn btn-outline">Хочу план своего года</a>
+      </div>
+
+      <div class="srv rv">
+        <div class="srv-price">3 500 ₽</div>
+        <div class="srv-name">Совместимость в отношениях</div>
+        <div class="srv-tagline">Почему именно с этим человеком — именно этот конфликт</div>
+        <div class="srv-desc">Сравню две даты рождения и покажу где ваши матрицы создают напряжение — и что с этим реально сделать. Для пары, мамы, ребёнка, партнёра по бизнесу.</div>
+        <div class="srv-note">Формат: PDF-документ</div>
+        <a href="https://t.me/darya_bova" target="_blank" class="srv-btn btn-outline">Разобрать наши отношения</a>
+      </div>
+
+      <div class="srv rv2">
+        <div class="srv-price">2 500 ₽</div>
+        <div class="srv-name">Денежный ключ</div>
+        <div class="srv-tagline">Деньги приходят — но не держатся</div>
+        <div class="srv-desc">Конкретные сценарии, зашитые в твоей матрице с рождения. Уходишь не с мотивацией — а с пониманием и конкретными шагами.</div>
+        <ul class="srv-list">
+          <li>Какой денежный сценарий ты несёшь</li>
+          <li>Что блокирует поток</li>
+          <li>Пошаговые рекомендации</li>
+        </ul>
+        <a href="https://t.me/darya_bova" target="_blank" class="srv-btn btn-outline">Найти мой денежный ключ</a>
+      </div>
+
+      <div class="srv rv3">
+        <div class="srv-price">2 500 ₽</div>
+        <div class="srv-name">Экспресс-разбор по запросу</div>
+        <div class="srv-tagline">Боль, которая не отпускает — найдём корень</div>
+        <div class="srv-desc">Берём твой конкретный запрос. Ищем корень в матрице. Разбираем механику — почему это происходит именно с тобой, именно сейчас. И сразу терапевтируем.</div>
+        <a href="https://t.me/darya_bova" target="_blank" class="srv-btn btn-outline">Разобрать мой запрос</a>
+      </div>
+
+      <div class="srv rv">
+        <div class="srv-price">2 500 ₽</div>
+        <div class="srv-name">Детская матрица</div>
+        <div class="srv-tagline">До 9 лет родители закладывают фундамент</div>
+        <div class="srv-desc">Для родителей, которые хотят понять своего ребёнка глубже. Разбор детской матрицы, кармические связи, направления развития.</div>
+        <a href="https://t.me/darya_bova" target="_blank" class="srv-btn btn-outline">Разобрать матрицу ребёнка</a>
+      </div>
+
+      <div class="srv rv2">
+        <div class="srv-price">2 500 ₽</div>
+        <div class="srv-name">Аскеза</div>
+        <div class="srv-tagline">Точный инструмент под твою задачу</div>
+        <div class="srv-desc">Аскеза — это не наказание. Это точный инструмент, который работает только когда подобран под тебя, твою матрицу и твою задачу.</div>
+        <ul class="srv-list">
+          <li>На отношения, здоровье, деньги</li>
+          <li>На карьеру, переезд, обучение</li>
+          <li>Чёткая персональная инструкция</li>
+        </ul>
+        <a href="https://t.me/darya_bova" target="_blank" class="srv-btn btn-outline">Подобрать мою аскезу</a>
+      </div>
+
+    </div>
+
+    <div class="srv-footer rv">
+      <p>Не знаешь с чего начать — напиши просто «не знаю с чего начать». Я отвечу и скажу что сейчас актуальнее. Без давления. Это бесплатно.</p>
+      <a href="https://t.me/darya_bova" target="_blank" class="btn-terra">Написать Дарье</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. CASE -->
+<section id="case" class="section-pad">
+  <div class="inner-md">
+    <div class="case-hd rv">
+      <span class="label">История клиентки · Кейс</span>
+      <h2>От внутренней тяжести — к «я просто живу и радуюсь»</h2>
+    </div>
+
+    <div class="case-steps">
+      <div class="cs rv">
+        <span class="cs-num">01</span>
+        <div class="cs-title">Запрос</div>
+        <p>Заниженная самооценка, страх проявляться, внутреннее напряжение, сложности с деньгами, страх перемен. В процессе работы проявилась ещё одна важная тема: <em style="color:var(--terra)">"Хочу вынуть маму из себя. Она как камень во мне".</em></p>
+      </div>
+      <div class="cs rv2">
+        <span class="cs-num">02</span>
+        <div class="cs-title">Работа</div>
+        <p>Май 2025 — февраль 2026. Проведено 2 сессии регрессивной терапии. Изменения продолжались не только сразу после сессий, но и в течение нескольких последующих месяцев.</p>
+      </div>
+      <div class="cs rv3">
+        <span class="cs-num">03</span>
+        <div class="cs-title">Результат</div>
+        <p>Путь от внутренней тяжести и постоянного напряжения — к спокойному и устойчивому состоянию. Вместо бесконечного поиска себя появилась внутренняя опора.</p>
+      </div>
+    </div>
+
+    <div class="case-results rv">
+      <h3>Что изменилось</h3>
+      <div class="res-grid">
+        <div class="res-item">стало легче проявлять себя и свои желания</div>
+        <div class="res-item">появилась уверенность в общении и работе</div>
+        <div class="res-item">ушло постоянное напряжение и ощущение спешки</div>
+        <div class="res-item">улучшились отношения с родителями, особенно с мамой</div>
+        <div class="res-item">появились новые знакомства, интересы и приятные события</div>
+        <div class="res-item">стало проще отстаивать личные границы</div>
+        <div class="res-item">исчезла потребность бесконечно «дорабатывать себя»</div>
+        <div class="res-item">появилось больше доверия себе и жизни</div>
+      </div>
+    </div>
+
+    <div class="case-quote rv2">
+      <blockquote>«Всё происходит без надрыва, легко и непринуждённо. Я научилась уверенно отстаивать свои границы и уважать границы других. Отпали вопросы — какое моё предназначение и где бы ещё поучиться. Я просто живу и радуюсь. В общем, я счастлива.»</blockquote>
+      <cite>Клиентка · февраль 2026 · после 2 сессий регрессивной терапии</cite>
+    </div>
+
+    <!-- case screenshots -->
+    <div class="case-screenshots">
+      <div class="ss rv" onclick="openLb('https://i.ibb.co/Myq2hbXg/photo-2026-06-06-18-55-13.jpg')">
+        <img src="https://i.ibb.co/Myq2hbXg/photo-2026-06-06-18-55-13.jpg" alt="Отзыв клиентки" loading="lazy">
+      </div>
+      <div class="ss rv2" onclick="openLb('https://i.ibb.co/LdVb5bzB/photo-2026-06-06-18-55-14.jpg')">
+        <img src="https://i.ibb.co/LdVb5bzB/photo-2026-06-06-18-55-14.jpg" alt="Отзыв клиентки" loading="lazy">
+      </div>
+      <div class="ss rv3" onclick="openLb('https://i.ibb.co/nqfTFBGq/photo-2026-06-06-19-01-53.jpg')">
+        <img src="https://i.ibb.co/nqfTFBGq/photo-2026-06-06-19-01-53.jpg" alt="Отзыв клиентки" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. REVIEWS -->
+<section id="reviews" class="section-pad">
+  <div class="inner">
+    <div class="reviews-hd rv">
+      <span class="label" style="display:block;text-align:center">Отзывы</span>
+      <h2>Что говорят те, кто уже прошёл этот путь</h2>
+      <p>Не красивые слова — реальные скрины от реальных людей</p>
+    </div>
+
+    <div class="rev-grid">
+      <div class="rev rv">
+        <span class="rev-type rt-reg">Регрессивная терапия</span>
+        <div class="rev-key">Страх потери денег ушёл за 2 недели</div>
+        <p class="rev-txt">Очень быстро погрузились в прошлую жизнь, стало понятно откуда всё это идёт. Во время очищения я даже чувствовала физическую боль в руках — настолько во мне это всё сидело. После сессии прям стало легко. Страх ушёл, появилось больше уверенности в себе.</p>
+        <div class="rev-name">Лена · запрос: страх потери денег</div>
+      </div>
+      <div class="rev rv2">
+        <span class="rev-type rt-num">Нумерология</span>
+        <div class="rev-key">Попадание 90%+, теперь есть карта как быть в плюсе</div>
+        <p class="rev-txt">Сразу видно какие стороны и сферы у меня в минусе, какие в плюсе. Некоторые вещи проходят в несознанке, на автомате. Теперь есть напоминалочка — что делать, чтобы максимально быть в плюсе.</p>
+        <div class="rev-name">Клиент · разбор даты рождения</div>
+      </div>
+      <div class="rev rv3">
+        <span class="rev-type rt-reg">Регрессивная терапия</span>
+        <div class="rev-key">Уровень и качество — выше, чем у других специалистов</div>
+        <p class="rev-txt">Очень удивил и порадовал уровень и качество сессии — я не первый раз в регрессе. У Дарьи приятный голос, она уверенно и качественно погрузила меня в нужное состояние. Рекомендую её как отличного мастера!</p>
+        <div class="rev-name">Мари · не первая сессия регресса</div>
+      </div>
+      <div class="rev rv">
+        <span class="rev-type rt-num">Нумерология</span>
+        <div class="rev-key">Вернулась уверенность в себе, которая была просто растоптана</div>
+        <p class="rev-txt">Ко мне пришла уверенность в себе. Стала глубже мыслить. А тема папы отпустила — не помню когда. Раньше в период весна-осень всегда начиналось заново. Я поняла что я — это Я с большой буквы.</p>
+        <div class="rev-name">Анонимно · разбор даты рождения</div>
+      </div>
+      <div class="rev rv2">
+        <span class="rev-type rt-reg">Регрессивная терапия</span>
+        <div class="rev-key">Решила вопрос, который тянул за душу пару лет</div>
+        <p class="rev-txt">Начали происходить изменения в моём сознании, поведении и отношении к происходящему. Я смогла решить вопрос, который тянул меня за душу пару лет. Высказала своё мнение без страха — мне очень понравилось это ощущение!</p>
+        <div class="rev-name">Елена · запрос: уверенность в себе</div>
+      </div>
+      <div class="rev rv3">
+        <span class="rev-type rt-num">Нумерология</span>
+        <div class="rev-key">Перестала реагировать агрессией, состояние наполненное</div>
+        <p class="rev-txt">Я не реагирую агрессией там, где раньше реагировала. Всё очень спокойно. Замечаю что когда в потоке — всё складывается под мои запросы. Состояние наполненное, не ругаю себя если что-то не получается.</p>
+        <div class="rev-name">Ира · работа с состоянием</div>
+      </div>
+    </div>
+
+    <!-- Screenshots gallery -->
+    <p class="ss-label rv">Реальные скрины из Telegram</p>
+    <div class="ss-grid">
+      <div class="ss rv" onclick="openLb('https://i.ibb.co/dsXZPzzf/photo-2026-05-31-16-12-47.jpg')">
+        <img src="https://i.ibb.co/dsXZPzzf/photo-2026-05-31-16-12-47.jpg" alt="Отзыв" loading="lazy">
+      </div>
+      <div class="ss rv2" onclick="openLb('https://i.ibb.co/vCzX4Xgy/photo-2026-05-31-16-12-53-3.jpg')">
+        <img src="https://i.ibb.co/vCzX4Xgy/photo-2026-05-31-16-12-53-3.jpg" alt="Отзыв" loading="lazy">
+      </div>
+      <div class="ss rv3" onclick="openLb('https://i.ibb.co/pjGMmd2z/photo-2026-05-31-16-12-53.jpg')">
+        <img src="https://i.ibb.co/pjGMmd2z/photo-2026-05-31-16-12-53.jpg" alt="Отзыв" loading="lazy">
+      </div>
+      <div class="ss rv" onclick="openLb('https://i.ibb.co/6JTDP0vv/photo-2025-05-06-13-57-07.jpg')">
+        <img src="https://i.ibb.co/6JTDP0vv/photo-2025-05-06-13-57-07.jpg" alt="Отзыв" loading="lazy">
+      </div>
+      <div class="ss rv2" onclick="openLb('https://i.ibb.co/KxF9xjRP/photo-2026-05-31-16-12-50-3.jpg')">
+        <img src="https://i.ibb.co/KxF9xjRP/photo-2026-05-31-16-12-50-3.jpg" alt="Отзыв" loading="lazy">
+      </div>
+      <div class="ss rv3" onclick="openLb('https://i.ibb.co/spKKDXcN/photo-2026-05-31-16-12-52.jpg')">
+        <img src="https://i.ibb.co/spKKDXcN/photo-2026-05-31-16-12-52.jpg" alt="Отзыв" loading="lazy">
+      </div>
+      <div class="ss rv" onclick="openLb('https://i.ibb.co/b5W40v09/photo-2026-05-31-16-12-48-2.jpg')">
+        <img src="https://i.ibb.co/b5W40v09/photo-2026-05-31-16-12-48-2.jpg" alt="Отзыв" loading="lazy">
+      </div>
+      <div class="ss rv2" onclick="openLb('https://i.ibb.co/Pv3RZdXh/photo-2025-07-17-14-24-34.jpg')">
+        <img src="https://i.ibb.co/Pv3RZdXh/photo-2025-07-17-14-24-34.jpg" alt="Отзыв" loading="lazy">
+      </div>
+    </div>
+
+    <div class="rev-more rv">
+      <p>Это не истории про магию. Это истории про то, как человек наконец увидел себя — и сдвинулся с места, где застрял годами. Твоя история может быть следующей.</p>
+      <a href="https://t.me/darya_bova" target="_blank" class="btn-terra">Написать Дарье в Telegram</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section id="faq" class="section-pad">
+  <div class="inner-sm">
+    <div class="faq-hd rv">
+      <span class="label">FAQ</span>
+      <h2>Вопросы, которые задают чаще всего</h2>
+    </div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">Это не противоречит религии?<span class="faq-ico">+</span></button><div class="faq-a"><p>Нумерология и регрессивная терапия — инструменты самопознания, не религиозная практика. Никаких ритуалов, привязок к верованиям или магических обещаний. Только твои цифры, твои образы и твоя работа с ними.</p></div></div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">Нужно ли во что-то верить, чтобы это работало?<span class="faq-ico">+</span></button><div class="faq-a"><p>Нет. Нужно только желание разобраться в себе — и честность с собой. Скептики приходят и получают результат так же, как те, кто давно в теме.</p></div></div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">Как проходит работа онлайн?<span class="faq-ico">+</span></button><div class="faq-a"><p>Нумерологические разборы: ты присылаешь дату рождения — я готовлю развёрнутый PDF-документ, который остаётся у тебя навсегда. Регрессивная терапия: сессия в видеозвонке, один на один. Всё что нужно — тихое место и 1,5–2 часа времени.</p></div></div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">Что такое регрессивная терапия — это гипноз?<span class="faq-ico">+</span></button><div class="faq-a"><p>Нет. Это мягкая работа с образами в расслабленном состоянии. Ты остаёшься в сознании, помнишь всё что происходит, можешь остановить процесс в любой момент. Я веду и держу пространство — ты смотришь и проживаешь.</p></div></div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">Что если во время регресса ничего не придёт?<span class="faq-ico">+</span></button><div class="faq-a"><p>Психика не выдаёт то, к чему человек не готов — и это нормально. Если образов нет, значит есть другой запрос или нужна подготовка. Я не оставлю тебя с пустотой — разберёмся вместе.</p></div></div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">Что я получу от разбора даты рождения? Это же просто цифры.<span class="faq-ico">+</span></button><div class="faq-a"><p>Цифры — это структура. Твоя дата рождения содержит карту личности, сценариев, ресурсов и блоков. Это не гороскоп и не предсказание. Это конкретный анализ — про тебя, не про всех Львов или Близнецов сразу.</p></div></div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">Ты предсказываешь будущее?<span class="faq-ico">+</span></button><div class="faq-a"><p>Нет. Я работаю с прогностикой — это не «у тебя будет то-то», а карта энергий твоего периода. Ты сама решаешь как их использовать. Я даю инструмент, не приговор.</p></div></div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">Сколько сессий нужно для результата?<span class="faq-ico">+</span></button><div class="faq-a"><p>Зависит от запроса. Один разбор даты даёт ясность и понимание — уже это меняет взгляд на многое. Регресс — одна сессия иногда даёт сдвиг там, где годами ничего не менялось. Я не создаю зависимость от работы со мной: даю инструменты и отпускаю.</p></div></div>
+
+    <div class="faq-item rv"><button class="faq-q" onclick="faq(this)">А если мне не подойдёт?<span class="faq-ico">+</span></button><div class="faq-a"><p>Перед любой работой мы коротко общаемся — чтобы убедиться, что запрос и формат совпадают. Я не беру всех подряд. Если понимаю, что не смогу помочь — скажу честно и порекомендую куда обратиться.</p></div></div>
+  </div>
+</section>
+
+<!-- 9. FINAL -->
+<section id="final">
+  <div class="final-bg"></div>
+  <img src="https://i.ibb.co/PZDwCtRC/photo-2026-06-06-14-32-44.jpg" class="final-photo" alt="">
+  <div class="final-overlay"></div>
+  <div class="final-content rv">
+    <span class="label">Начать</span>
+    <h2>Если чувствуешь, что ходишь по кругу — возможно, <em>пришло время понять почему</em></h2>
+    <p>Первый шаг — просто написать. Расскажи что болит или что хочешь разобрать. Я отвечу и предложу подходящий формат.</p>
+    <div class="final-btns">
+      <a href="https://t.me/darya_bova" target="_blank" class="btn-wh-solid">Записаться на консультацию</a>
+      <a href="https://t.me/darya_bova" target="_blank" class="btn-ghost">Telegram @darya_bova</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div>
+      <span class="foot-name">Дарья Рябова</span>
+      <div class="foot-role">Регрессолог · Нумеролог метода «Код жизни»</div>
+      <div class="foot-links">
+        <a href="https://t.me/darya_bova" target="_blank">Telegram: @darya_bova</a>
+        <a href="mailto:daryabova317@gmail.com">daryabova317@gmail.com</a>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div>Самозанятая</div>
+      <div>ИНН 500705982342</div>
+      <div style="margin-top:8px"><a href="#">Политика конфиденциальности</a></div>
+    </div>
+  </div>
+  <hr class="foot-hr">
+  <div class="foot-copy">© 2026 Дарья Рябова. Все права защищены.</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lb" onclick="closeLb()">
+  <button id="lb-close" onclick="closeLb()">×</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+// Scroll reveal
+const rvEls = document.querySelectorAll('.rv,.rv2,.rv3');
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}
+  });
+},{threshold:.1});
+rvEls.forEach(el=>obs.observe(el));
+
+// Trigger hero immediately
+document.querySelectorAll('#hero .rv,#hero .rv2,#hero .rv3').forEach((el,i)=>{
+  setTimeout(()=>el.classList.add('vis'), i*120+100);
+});
+
+// FAQ
+function faq(btn){
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+// Lightbox
+function openLb(src){
+  document.getElementById('lb-img').src=src;
+  document.getElementById('lb').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){
+  document.getElementById('lb').classList.remove('on');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+});
+
+// Mobile menu
+const burger=document.getElementById('burger');
+const navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+</script>
+</body>
+</html>
