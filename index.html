@@ -568,9 +568,11 @@ hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200
 /* ── RESPONSIVE ──────────────────── */
 @media(max-width:900px){
   #hero{grid-template-columns:1fr}
-  .hero-r{height:55vw;order:-1}
-  .hero-r::after{background:linear-gradient(to bottom,transparent 65%,var(--bg) 100%)}
+  .hero-r{height:72vw;min-height:260px;order:-1}
+  .hero-r img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+  .hero-r::after{background:linear-gradient(to bottom,transparent 60%,var(--bg) 100%)}
   .about-grid{grid-template-columns:1fr}
+  .about-photo{aspect-ratio:3/4;max-height:500px}
   .case-steps{grid-template-columns:1fr}
   .res-grid{grid-template-columns:1fr}
   .foot-inner{grid-template-columns:1fr}
@@ -632,7 +634,7 @@ hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200
     </ul>
   </div>
   <div class="hero-r">
-    <img src="https://i.ibb.co/PZDwCtRC/photo-2026-06-06-14-32-44.jpg" alt="Дарья Рябова">
+    <img src="https://raw.githubusercontent.com/daryabova/web/main/images/darya-main.jpg" alt="Дарья Рябова">
   </div>
 </section>
 
@@ -671,7 +673,7 @@ hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200
 <section id="about" class="section-pad">
   <div class="inner about-grid">
     <div class="about-photo rv">
-      <img src="https://i.ibb.co/x8rNFWnv/photo-2026-06-06-14-32-58.jpg" alt="Дарья Рябова — регрессолог и нумеролог">
+      <img src="https://raw.githubusercontent.com/daryabova/web/main/images/darya-about.jpg" alt="Дарья Рябова — регрессолог и нумеролог">
       <div class="about-badge">
         <strong>Дарья Рябова</strong>
         <span>Регрессолог · Нумеролог «Код жизни»</span>
@@ -720,17 +722,17 @@ hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200
       </div>
     </div>
     <div class="diplomas rv">
-      <div class="dip" onclick="openLb('https://i.ibb.co/9m5SxmP0/img20260530-21521093.jpg')">
-        <img src="https://i.ibb.co/9m5SxmP0/img20260530-21521093.jpg" alt="Удостоверение о повышении квалификации 2025">
+      <div class="dip" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/diploma-1.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/diploma-1.jpg" alt="Удостоверение о повышении квалификации 2025">
       </div>
-      <div class="dip" onclick="openLb('https://i.ibb.co/S451hDbT/photo-2026-05-30-19-54-18.jpg')">
-        <img src="https://i.ibb.co/S451hDbT/photo-2026-05-30-19-54-18.jpg" alt="Сертификат — Регрессивная нумерология">
+      <div class="dip" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/diploma-2.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/diploma-2.jpg" alt="Сертификат — Регрессивная нумерология">
       </div>
-      <div class="dip" onclick="openLb('https://i.ibb.co/p6xB7XLv/photo-2026-05-30-19-54-12.jpg')">
-        <img src="https://i.ibb.co/p6xB7XLv/photo-2026-05-30-19-54-12.jpg" alt="Сертификат — Регрессивная терапия">
+      <div class="dip" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/diploma-3.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/diploma-3.jpg" alt="Сертификат — Регрессивная терапия">
       </div>
-      <div class="dip" onclick="openLb('https://i.ibb.co/Ng66snb2/img20260530-21371986.jpg')">
-        <img src="https://i.ibb.co/Ng66snb2/img20260530-21371986.jpg" alt="Диплом психолог-консультант">
+      <div class="dip" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/diploma-4.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/diploma-4.jpg" alt="Диплом психолог-консультант">
       </div>
     </div>
   </div>
@@ -896,14 +898,14 @@ hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200
 
     <!-- case screenshots -->
     <div class="case-screenshots">
-      <div class="ss rv" onclick="openLb('https://i.ibb.co/Myq2hbXg/photo-2026-06-06-18-55-13.jpg')">
-        <img src="https://i.ibb.co/Myq2hbXg/photo-2026-06-06-18-55-13.jpg" alt="Отзыв клиентки" loading="lazy">
+      <div class="ss rv" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/case-1.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/case-1.jpg" alt="Отзыв клиентки" loading="lazy">
       </div>
-      <div class="ss rv2" onclick="openLb('https://i.ibb.co/LdVb5bzB/photo-2026-06-06-18-55-14.jpg')">
-        <img src="https://i.ibb.co/LdVb5bzB/photo-2026-06-06-18-55-14.jpg" alt="Отзыв клиентки" loading="lazy">
+      <div class="ss rv2" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/case-2.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/case-2.jpg" alt="Отзыв клиентки" loading="lazy">
       </div>
-      <div class="ss rv3" onclick="openLb('https://i.ibb.co/nqfTFBGq/photo-2026-06-06-19-01-53.jpg')">
-        <img src="https://i.ibb.co/nqfTFBGq/photo-2026-06-06-19-01-53.jpg" alt="Отзыв клиентки" loading="lazy">
+      <div class="ss rv3" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/case-3.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/case-3.jpg" alt="Отзыв клиентки" loading="lazy">
       </div>
     </div>
   </div>
@@ -960,35 +962,35 @@ hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200
     <!-- Screenshots gallery -->
     <p class="ss-label rv">Реальные скрины из Telegram</p>
     <div class="ss-grid">
-      <div class="ss rv" onclick="openLb('https://i.ibb.co/dsXZPzzf/photo-2026-05-31-16-12-47.jpg')">
-        <img src="https://i.ibb.co/dsXZPzzf/photo-2026-05-31-16-12-47.jpg" alt="Отзыв" loading="lazy">
+      <div class="ss rv" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/review-1.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/review-1.jpg" alt="Отзыв" loading="lazy">
       </div>
-      <div class="ss rv2" onclick="openLb('https://i.ibb.co/vCzX4Xgy/photo-2026-05-31-16-12-53-3.jpg')">
-        <img src="https://i.ibb.co/vCzX4Xgy/photo-2026-05-31-16-12-53-3.jpg" alt="Отзыв" loading="lazy">
+      <div class="ss rv2" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/review-2.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/review-2.jpg" alt="Отзыв" loading="lazy">
       </div>
-      <div class="ss rv3" onclick="openLb('https://i.ibb.co/pjGMmd2z/photo-2026-05-31-16-12-53.jpg')">
-        <img src="https://i.ibb.co/pjGMmd2z/photo-2026-05-31-16-12-53.jpg" alt="Отзыв" loading="lazy">
+      <div class="ss rv3" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/review-3.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/review-3.jpg" alt="Отзыв" loading="lazy">
       </div>
-      <div class="ss rv" onclick="openLb('https://i.ibb.co/6JTDP0vv/photo-2025-05-06-13-57-07.jpg')">
-        <img src="https://i.ibb.co/6JTDP0vv/photo-2025-05-06-13-57-07.jpg" alt="Отзыв" loading="lazy">
+      <div class="ss rv" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/review-4new.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/review-4new.jpg" alt="Отзыв" loading="lazy">
       </div>
-      <div class="ss rv2" onclick="openLb('https://i.ibb.co/KxF9xjRP/photo-2026-05-31-16-12-50-3.jpg')">
-        <img src="https://i.ibb.co/KxF9xjRP/photo-2026-05-31-16-12-50-3.jpg" alt="Отзыв" loading="lazy">
+      <div class="ss rv2" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/review-5.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/review-5.jpg" alt="Отзыв" loading="lazy">
       </div>
-      <div class="ss rv3" onclick="openLb('https://i.ibb.co/spKKDXcN/photo-2026-05-31-16-12-52.jpg')">
-        <img src="https://i.ibb.co/spKKDXcN/photo-2026-05-31-16-12-52.jpg" alt="Отзыв" loading="lazy">
+      <div class="ss rv3" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/review-6.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/review-6.jpg" alt="Отзыв" loading="lazy">
       </div>
-      <div class="ss rv" onclick="openLb('https://i.ibb.co/b5W40v09/photo-2026-05-31-16-12-48-2.jpg')">
-        <img src="https://i.ibb.co/b5W40v09/photo-2026-05-31-16-12-48-2.jpg" alt="Отзыв" loading="lazy">
+      <div class="ss rv" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/review-7.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/review-7.jpg" alt="Отзыв" loading="lazy">
       </div>
-      <div class="ss rv2" onclick="openLb('https://i.ibb.co/Pv3RZdXh/photo-2025-07-17-14-24-34.jpg')">
-        <img src="https://i.ibb.co/Pv3RZdXh/photo-2025-07-17-14-24-34.jpg" alt="Отзыв" loading="lazy">
+      <div class="ss rv2" onclick="openLb('https://raw.githubusercontent.com/daryabova/web/main/images/review-8.jpg')">
+        <img src="https://raw.githubusercontent.com/daryabova/web/main/images/review-8.jpg" alt="Отзыв" loading="lazy">
       </div>
     </div>
 
     <div class="rev-more rv">
       <p>Это не истории про магию. Это истории про то, как человек наконец увидел себя — и сдвинулся с места, где застрял годами. Твоя история может быть следующей.</p>
-      <a href="https://t.me/darya_bova" target="_blank" class="btn-terra">Написать Дарье в Telegram</a>
+      <a href="https://t.me/darya_bova" target="_blank" style="color:var(--terra);font-weight:600;font-size:.9rem;text-decoration:underline">→ Написать Дарье в Telegram</a>
     </div>
   </div>
 </section>
@@ -1024,7 +1026,7 @@ hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200
 <!-- 9. FINAL -->
 <section id="final">
   <div class="final-bg"></div>
-  <img src="https://i.ibb.co/PZDwCtRC/photo-2026-06-06-14-32-44.jpg" class="final-photo" alt="">
+  <img src="https://raw.githubusercontent.com/daryabova/web/main/images/darya-main.jpg" class="final-photo" alt="">
   <div class="final-overlay"></div>
   <div class="final-content rv">
     <span class="label">Начать</span>
