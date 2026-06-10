@@ -100,14 +100,17 @@ h3{font-family:'Cormorant Garamond',serif;font-weight:600}
 
 /* ── HERO ──────────────────── */
 #hero{
-  min-height:100vh;
   display:grid;
   grid-template-columns:1fr 1fr;
-  padding-top:64px;
+  gap:clamp(36px,6vw,90px);
+  align-items:center;
+  max-width:1200px;
+  margin:0 auto;
+  padding:clamp(80px,10vw,130px) clamp(20px,5vw,80px);
+  padding-top:calc(64px + clamp(40px,5vw,60px));
 }
 .hero-l{
   display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(60px,8vw,100px) clamp(20px,4vw,60px) clamp(60px,8vw,100px) clamp(24px,7vw,100px);
 }
 .hero-pill{
   display:inline-flex;align-items:center;gap:8px;
@@ -148,15 +151,18 @@ h3{font-family:'Cormorant Garamond',serif;font-weight:600}
 .hero-checks li::before{content:'✓';color:var(--olive);font-weight:700}
 .hero-r{
   position:relative;overflow:hidden;
+  border-radius:var(--r);
+  aspect-ratio:4/5;
   background:linear-gradient(160deg,#E5DDD3 0%,#CEC3B4 100%);
 }
 .hero-r img{
   width:100%;height:100%;
-  object-fit:cover;object-position:50% 15%;
+  object-fit:cover;object-position:50% 10%;
+  display:block;
 }
 .hero-r::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(to right,var(--bg) 0%,transparent 18%);
+  background:linear-gradient(to bottom,transparent 80%,rgba(245,241,234,.2) 100%);
   pointer-events:none;
 }
 
@@ -567,10 +573,20 @@ hr.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.08);max-width:1200
 
 /* ── RESPONSIVE ──────────────────── */
 @media(max-width:900px){
-  #hero{grid-template-columns:1fr}
-  .hero-r{height:72vw;min-height:260px;order:-1}
-  .hero-r img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
-  .hero-r::after{background:linear-gradient(to bottom,transparent 60%,var(--bg) 100%)}
+  #hero{
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    padding:calc(64px + 20px) 16px 40px;
+    max-width:100%;
+  }
+  .hero-l{padding:0}
+  .hero-r{aspect-ratio:3/4;width:100%}
+  .hero-pill{font-size:.68rem;padding:6px 12px;margin-bottom:14px}
+  #hero h1{font-size:1.15rem;margin-bottom:12px}
+  .hero-sub{font-size:.8rem;margin-bottom:18px;max-width:100%}
+  .btn-terra{padding:12px 18px;font-size:.78rem}
+  .hero-checks{gap:6px 12px;margin-top:10px}
+  .hero-checks li{font-size:.72rem}
   .about-grid{grid-template-columns:1fr}
   .about-photo{aspect-ratio:3/4;max-height:500px}
   .case-steps{grid-template-columns:1fr}
